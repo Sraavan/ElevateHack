@@ -1,5 +1,5 @@
 // Helpers
-var fs = require("fs")
+//var fs = require("fs")
 
 const calcAge = birthday => {
   now = Date.now();
@@ -9,7 +9,7 @@ const calcAge = birthday => {
   return age;
 }
 
-const distance = (lat1, lon1, lat2, lon2, unit) => {
+const distance = (lat1, lon1, lat2, lon2, unit = 'K') => {
   var radlat1 = Math.PI * lat1 / 180
   var radlat2 = Math.PI * lat2 / 180
   var theta = lon1 - lon2
@@ -26,10 +26,13 @@ const distance = (lat1, lon1, lat2, lon2, unit) => {
   return dist
 }
 
-fs.readFile("child-care-fin.json")
-
-
 module.exports = {
   calcAge: calcAge,
   getDistance: distance
 }
+
+
+// fs.readFile("../database/child-care.json", function (err, data) {
+//   const mainObj = JSON.parse(data);
+//   console.log(mainObj);
+// })
