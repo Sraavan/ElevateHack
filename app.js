@@ -43,15 +43,13 @@ app.get('/childCare', function (req, res) {
 // });
 
 const userRoute = require('./routes/user');
-const apiRoute = require('./routes/api');
+
 app.use('/user', userRoute);
-app.use('/api', apiRoute)
+
 // const anonymousRoute = require('./routes/anonymous');
 
 
 // app.use('/anonymous', anonymousRoute);
-
-// serve static files
 
 
 

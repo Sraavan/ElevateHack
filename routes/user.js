@@ -7,12 +7,8 @@ let parents = [];
 // helpers
 const helpers = require('../utils/helpers');
 
-router.get('/login', (req, res) => {
-  res.render('login');
-})
-router.get('/signup', (req, res) => {
-  res.render('signup')
-})
+router.get('/login', (req, res) => { res.render('login'); })
+router.get('/signup', (req, res) => { res.render('signup') })
 
 router.post('/login', (req, res, next) => {
   const email = req.body.email;
@@ -39,10 +35,9 @@ router.post('/signup', (req, res, next) => {
     email: email,
     children: [],
     location: req.body.location || {},
-    url: 'http://localhost:4001/user/' + ID
+    endpoint: `/user/${ID}`
   };
 
-  // add user to DB
   parents.push(new_user);
 
   res.redirect(`/user/${ID}/child`)
@@ -52,13 +47,8 @@ router.get('/:userId', (req, res, next) => {
   const userId = req.params.userId;
   let user = findParent(userId);
 
-  console.log("user:", user);
-  if (user.length === 1) {
-    res.status(200).json({ user: user[0] })
-  }
-  else {
-    res.status(404).json({ message: "failed Auth" })
-  }
+  if (user) { res.redirect(user.endpoint) }
+  else { res.status(404).json({ message: "failed Auth" }) }
 
 })
 
@@ -75,21 +65,21 @@ router.post('/:userId/child', (req, res, next) => {
       id: child_id,
       name: req.body.name,
       birthday: req.body.birthday,
-      url: `http://localhost:4001/user/${parent.id}/child/${child_id}`
+      endpoint: `/user/${parent.id}/child/${child_id}`
     }
 
     parent.children.push(child);
 
-    res.redirect(child.url + '/recommendation');
+    res.redirect(child.endpoint + '/recommendation');
   }
   else { res.status(404).json({ message: 'User is not found' }) };
 })
 
-router.get('/:userId/child/:childId', (req, res, next) => {
-  const child = findChild(req.params.userId, req.params.childId);
+// router.get('/:userId/child/:childId', (req, res, next) => {
+//   const child = findChild(req.params.userId, req.params.childId);
 
-  res.status(200).json({ child: { ...child, age: helpers.calcAge(child.birthday) } })
-})
+//   res.status(200).json({ child: { ...child, age: helpers.calcAge(child.birthday) } })
+// })
 
 router.get('/:userId/child/:childId/recommendation', (req, res, next) => {
   const child = findChild(req.params.userId, req.params.childId)[0];
@@ -104,7 +94,7 @@ router.get('/:userId/child/:childId/event', (req, res, next) => {
   res.render('event', { events: [] });
 })
 
-router.get('/:userId/child/:childId/activity', (req, res, next) => {
+router.get('/:userId/child/:childId/dental', (req, res, next) => {
   const child = findChild(req.params.userId, req.params.childId)[0];
   const age = helpers.calAge(child.birthday);
 })

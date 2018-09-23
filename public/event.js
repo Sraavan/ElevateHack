@@ -14,7 +14,7 @@
     var marker = new google.maps.Marker({
       map: map,
       position: myLatLng,
-      title: 'Hello World!'
+      title: 'My Location'
     });
     var marker = new google.maps.Marker({
       map: map,
@@ -23,7 +23,7 @@
     });
   }
 
-  fetch("http://localhost:4001/ChildCare")
+fetch("http://localhost:8085/ChildCare")
 .then(res => res.json()
 .then((res => {
   console.log(res);
