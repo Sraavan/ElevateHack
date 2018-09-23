@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const glob = require('../glob.js')
 let id = 0;
 let parents = [];
 
@@ -9,8 +9,7 @@ const helpers = require('../utils/helpers');
 
 router.get('/login', (req, res) => { res.render('login'); })
 router.get('/signup', (req, res) => {
-  console.log(__dirname + '../public/signup.html')
-  res.sendFile(path.join(__dirname, '/public/signup.html'));
+  res.sendFile(glob.parentDirName+'/public/signup.html');
 })
 
 router.post('/login', (req, res, next) => {
