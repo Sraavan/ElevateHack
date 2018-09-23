@@ -26,14 +26,14 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/categories.html', function (req, res) {
+app.get('/categories', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', '/categories.html'));
 })
 
-app.get('/subCategory.html', function (req, res) {
+app.get('/subCategory', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', '/subCategory.html'));
 })
-app.get('/dental.html', (req, res) => {
+app.get('/dental', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', '/dentalcare.html'));
 })
 app.get('/DentalCare', (req, res) => {
@@ -51,7 +51,7 @@ app.get('/subtype.html', function (req, res) {
 
 
 
-app.get('/event.html', function (req, res) {
+app.get('/event', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', '/event.html'));
 });
 // app.get('/childCare', function (req, res) {
