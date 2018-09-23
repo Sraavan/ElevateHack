@@ -7,6 +7,12 @@ let parents = [];
 // helpers
 const helpers = require('../utils/helpers');
 
+router.get('/login', (req, res) => {
+  res.render('login');
+})
+router.get('/signup', (req, res) => {
+  res.render('signup')
+})
 
 router.post('/login', (req, res, next) => {
   const email = req.body.email;
@@ -16,13 +22,14 @@ router.post('/login', (req, res, next) => {
   })
 
   if (user[0])
-    res.status(200).json({ message: "Logged in", user: user[0] })
+    res.redirect(`/user/${user[0].id}/child`)
   else
     res.status(404).json({ message: "failed Auth" })
 })
 
 router.post('/signup', (req, res, next) => {
   const email = req.body.email;
+  console.log(email);
   // Validate stuff here
 
   const ID = id++;
@@ -37,10 +44,8 @@ router.post('/signup', (req, res, next) => {
 
   // add user to DB
   parents.push(new_user);
-  res.status(201).json({
-    message: " Created new Accoutn",
-    user: new_user,
-  });
+
+  res.redirect(`/user/${ID}/child`)
 })
 
 router.get('/:userId', (req, res, next) => {
@@ -57,6 +62,9 @@ router.get('/:userId', (req, res, next) => {
 
 })
 
+router.get('/:userId/child', (req, res) => {
+  res.render('child_profile', { endpoint: `/${req.params.userId}/child` });
+})
 
 router.post('/:userId/child', (req, res, next) => {
   const parent = findParent(req.params.userId);
@@ -72,7 +80,7 @@ router.post('/:userId/child', (req, res, next) => {
 
     parent.children.push(child);
 
-    res.status(200).json({ user: parent });
+    res.redirect(child.url + '/recommendation');
   }
   else { res.status(404).json({ message: 'User is not found' }) };
 })
@@ -83,14 +91,17 @@ router.get('/:userId/child/:childId', (req, res, next) => {
   res.status(200).json({ child: { ...child, age: helpers.calcAge(child.birthday) } })
 })
 
-router.get('/:userId/child/:childId/recommendations', (req, res, next) => {
+router.get('/:userId/child/:childId/recommendation', (req, res, next) => {
   const child = findChild(req.params.userId, req.params.childId)[0];
   const age = helpers.calAge(child.birthday);
+  //res.json({ message: 'Pass' })
 })
 
-router.get('/:userId/child/:childId/learning', (req, res, next) => {
+router.get('/:userId/child/:childId/event', (req, res, next) => {
   const child = findChild(req.params.userId, req.params.childId)[0];
   const age = helpers.calAge(child.birthday);
+
+  res.render('event', { events: [] });
 })
 
 router.get('/:userId/child/:childId/activity', (req, res, next) => {
@@ -127,18 +138,18 @@ const findParent = (parent_id) => {
   return null;
 }
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/categories.html'));
-});
-// app.get('/getChildCare', function (req, res) {
-//   res.send(child_care);
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname + '/categories.html'));
 // });
-app.get('/subtype.html', function (req, res){
-  res.sendFile(path.join(__dirname + '/subtype.html'));
-})
-app.get('/event.html', function (req, res){
-  res.sendFile(path.join(__dirname + '/event.html'));
-});
-app.get('/childCare', function (req, res) {
-  res.send(child_care);
-})
+// // app.get('/getChildCare', function (req, res) {
+// //   res.send(child_care);
+// // });
+// app.get('/subtype.html', function (req, res){
+//   res.sendFile(path.join(__dirname + '/subtype.html'));
+// })
+// app.get('/event.html', function (req, res){
+//   res.sendFile(path.join(__dirname + '/event.html'));
+// });
+// app.get('/childCare', function (req, res) {
+//   res.send(child_care);
+// })

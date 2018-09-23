@@ -11,11 +11,47 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-const userRoute = require('./routes/user');
-const anonymousRoute = require('./routes/anonymous');
+// view engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/categories.html'));
+});
+app.post
+// app.get('/getChildCare', function (req, res) {
+//   res.send(child_care);
+// });
+app.get('/subtype.html', function (req, res) {
+  res.sendFile(path.join(__dirname + '/subtype.html'));
+})
+
+
+app.get('/event.html', function (req, res) {
+  res.render('event');
+});
+app.get('/childCare', function (req, res) {
+  res.send(child_care);
+})
+
+
+
+// app.get('/', function (req, res, next) {
+//   res.render('index', { title: 'Hello ' });
+// });
+
+const userRoute = require('./routes/user');
+const apiRoute = require('./routes/api');
 app.use('/user', userRoute);
-app.use('/anonymous', anonymousRoute);
+app.use('/api', apiRoute)
+// const anonymousRoute = require('./routes/anonymous');
+
+
+// app.use('/anonymous', anonymousRoute);
+
+// serve static files
 
 
 
