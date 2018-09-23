@@ -15,8 +15,12 @@ app.use(express.json());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static('public'));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
+// app.get('/css/:css', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', 'css', req.params.css));
+// })
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

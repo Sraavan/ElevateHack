@@ -8,16 +8,16 @@
   <title>Signup page</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="css/signup.css">
+  <link rel="stylesheet" href="/css/signup.css">
 
 </head>
 
 <body>
   <div class="bg"></div>
   <div class="container">
-    <form action="registration.html" method="get">
+    <form action="/user/signup" method="post">
       <p> Enter your email
-        <input type="email" class="form-control" id="inputEmail">
+        <input type="email" name="email" class="form-control" id="inputEmail">
         <input class="btn btn-default" type="submit" id="logButton" value="Signup">
       </p>
     </form>
