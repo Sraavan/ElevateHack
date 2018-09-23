@@ -37,7 +37,6 @@ router.post('/signup', (req, res, next) => {
 
   // add user to DB
   parents.push(new_user);
-  console.log(parents);
   res.status(201).json({
     message: " Created new Accoutn",
     user: new_user,
@@ -46,8 +45,6 @@ router.post('/signup', (req, res, next) => {
 
 router.get('/:userId', (req, res, next) => {
   const userId = req.params.userId;
-  console.log("User Id: ", userId);
-  console.log(parents);
   let user = findParent(userId);
 
   console.log("user:", user);
@@ -86,7 +83,7 @@ router.get('/:userId/child/:childId', (req, res, next) => {
   res.status(200).json({ child: { ...child, age: helpers.calcAge(child.birthday) } })
 })
 
-router.get('/:userId/child/:childId/recomendations', (req, res, next) => {
+router.get('/:userId/child/:childId/recommendations', (req, res, next) => {
   const child = findChild(req.params.userId, req.params.childId)[0];
   const age = helpers.calAge(child.birthday);
 })

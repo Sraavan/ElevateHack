@@ -1,5 +1,5 @@
 // Helpers
-var fs = require("fs")
+//var fs = require("fs")
 
 let arr_lon = [] //Array which stores the longitudes of centers
 let arr_lat = [] //Array which stores the latitudes of centres
@@ -14,7 +14,11 @@ const calcAge = birthday => {
   return age;
 }
 
+<<<<<<< HEAD
 const distance = (lat1, lon1, lat2, lon2, unit='K') => {
+=======
+const distance = (lat1, lon1, lat2, lon2, unit = 'K') => {
+>>>>>>> refs/remotes/origin/vicky/endpoints
   var radlat1 = Math.PI * lat1 / 180
   var radlat2 = Math.PI * lat2 / 180
   var theta = lon1 - lon2
@@ -31,6 +35,7 @@ const distance = (lat1, lon1, lat2, lon2, unit='K') => {
   return dist
 }
 
+<<<<<<< HEAD
 fs.readFile("../child-care-fin.json",function(err,data){
   if (err){
     console.log(err)
@@ -85,7 +90,15 @@ function generateCoordinatesJson(){
   return (JSON.stringify(coordObj))
 }
 
+=======
+>>>>>>> refs/remotes/origin/vicky/endpoints
 module.exports = {
   calcAge: calcAge,
   getDistance: distance
 }
+
+
+// fs.readFile("../database/child-care.json", function (err, data) {
+//   const mainObj = JSON.parse(data);
+//   console.log(mainObj);
+// })
