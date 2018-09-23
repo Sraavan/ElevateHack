@@ -24,8 +24,8 @@ fetch("http://localhost:4001/ChildCare")
         console.log(res[i].PCODE);
         console.log(res[i].run_date);
         console.log(res[i].PGSPACE)
-        appendResponses(res[i].LOC_NAME, res[i].run_date, res[i].PGSPACE, i, res[i].PCODE, 
-                        res[i].ward, res[i].PHONE, res[i].bldgname, res[i].bldg_type);
+        appendResponses(res[i].LOC_NAME, res[i].run_date, res[i].PGSPACE, i, res[i].PCODE,
+          res[i].ward, res[i].PHONE, res[i].bldgname, res[i].bldg_type);
         arr_Longitude.push(res[i].LONGITUDE)
         arr_Latitude.push(res[i].LATITUDE)
       }
@@ -62,10 +62,10 @@ function appendResponse(name, cap, date, i, pcode) {
   results_row.appendChild(node);
 }
 
-function appendResponses(name, date, cap, i, pcode, ward, phone, bldgname, bldg_type){
+function appendResponses(name, date, cap, i, pcode, ward, phone, bldgname, bldg_type) {
   let results_table = document.querySelector('#results_table');
-	var node = document.createElement("tr");
-	node.innerHTML = `
+  var node = document.createElement("tr");
+  node.innerHTML = `
 					<td>${name}
 						<br>
 					</td>
@@ -88,5 +88,5 @@ function appendResponses(name, date, cap, i, pcode, ward, phone, bldgname, bldg_
 						<div></div>
 					</td>
                     `;
-	results_table.appendChild(node);
+  results_table.appendChild(node);
 }
