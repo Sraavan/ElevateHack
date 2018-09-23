@@ -17,9 +17,11 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/categories.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
 app.post
 // app.get('/getChildCare', function (req, res) {
 //   res.send(child_care);

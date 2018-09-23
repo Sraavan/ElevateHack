@@ -1,0 +1,49 @@
+
+body, html {
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg{
+    background-image: url("../images/login.jpg");
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  text-align: center;
+}
+
+p{
+  font-size:25px;
+  color:white;
+  font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;;
+   margin: 0px 0px 30px 0px;
+  }
+
+#inputEmail {
+ font-size: 16pt;
+ height: 42px;
+ margin: 20px 50px 25px 0px;
+ }
+
+#logButton {
+  border: none;
+  font-size:16pt;
+  width: 9em;
+  height: 42px;
+  background-color:#FFAC8F;
+  color: white;
+
+}

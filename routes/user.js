@@ -8,7 +8,10 @@ let parents = [];
 const helpers = require('../utils/helpers');
 
 router.get('/login', (req, res) => { res.render('login'); })
-router.get('/signup', (req, res) => { res.render('signup') })
+router.get('/signup', (req, res) => {
+  console.log(__dirname + '../public/signup.html')
+  res.sendFile(path.join(__dirname, '/public/signup.html'));
+})
 
 router.post('/login', (req, res, next) => {
   const email = req.body.email;
