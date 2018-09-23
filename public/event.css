@@ -1,0 +1,13 @@
+#map{
+    height: 40vh;
+}
+.title{
+    text-align: center;
+    width: 100%;
+}
+.row{
+    margin: 20px 3px;
+}
+.container{
+    background: rgb(230, 227, 198);
+}

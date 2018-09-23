@@ -126,3 +126,19 @@ const findParent = (parent_id) => {
     return parent[0];
   return null;
 }
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/categories.html'));
+});
+// app.get('/getChildCare', function (req, res) {
+//   res.send(child_care);
+// });
+app.get('/subtype.html', function (req, res){
+  res.sendFile(path.join(__dirname + '/subtype.html'));
+})
+app.get('/event.html', function (req, res){
+  res.sendFile(path.join(__dirname + '/event.html'));
+});
+app.get('/childCare', function (req, res) {
+  res.send(child_care);
+})
