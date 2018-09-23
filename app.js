@@ -33,6 +33,12 @@ app.get('/categories', function (req, res) {
 app.get('/subCategory', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', '/subCategory.html'));
 })
+app.get('/dental', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', '/dentalcare.html'));
+})
+app.get('/DentalCare', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', '/dentalcare.json'));
+})
 
 
 // app.get('/getChildCare', function (req, res) {
@@ -42,12 +48,10 @@ app.get('/subtype.html', function (req, res) {
   res.sendFile(path.join(__dirname + '/subtype.html'));
 })
 
-
-
-
 app.get('/event', function (req, res) {
   res.render('event');
 });
+
 app.get('/childCare', function (req, res) {
   fs.readFile('public/child-care-json.json',function(err,data){
     if (err){
@@ -56,8 +60,12 @@ app.get('/childCare', function (req, res) {
     res.send(data)
     res.end()
 })
-})
+  res.sendFile(path.join(__dirname, 'public', '/event.html'));
+});
 
+// app.get('/ChildCare', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', '/child-care-json.json'));
+// })
 
 // app.get('/', function (req, res, next) {
 //   res.render('index', { title: 'Hello ' });
