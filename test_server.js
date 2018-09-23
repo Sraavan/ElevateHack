@@ -20,6 +20,6 @@ app.get('/ChildCare',function(req,res,next){
     })
 })
 
-app.get('/',function(req,res,next){
+app.get('/event',function(req,res,next){
     res.sendFile(__dirname+"/public/event.html")
 })

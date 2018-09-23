@@ -9,15 +9,14 @@ var map;
     // for display.
     map = new google.maps.Map(document.getElementById('map'), {
       center: myLatLng,
-      zoom: 15
+      zoom: 10
     });
-
     
   }
 
-fetch("http://localhost:8085/ChildCare")
-.then(res => res.json()
-.then((res => {
+  fetch("http://localhost:4001/ChildCare")
+.then(res => res.json())
+.then(res => {
   console.log(res);
   for (var i =0; i<10; i++){
     console.log(res[i].LOC_NAME);
@@ -28,8 +27,7 @@ fetch("http://localhost:8085/ChildCare")
     arr_Longitude.push(res[i].LONGITUDE)
     arr_Latitude.push(res[i].LATITUDE)
   }
-  })
-)).then((res) => {
+  }).then((res) => {
   // Create a marker and set its position.
 console.log(arr_Latitude)
 for (let i=0;i<arr_Latitude.length;i++){

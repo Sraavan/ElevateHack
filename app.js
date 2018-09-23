@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require("path");
-
+const fs = require('fs')
 // logger
 const logger = require('morgan');
 app.use(logger('dev'));
@@ -26,11 +26,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/categories.html', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', '/categories.html'));
+app.get('/categories', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'categories.html'));
 })
 
-app.get('/subCategory.html', function (req, res) {
+app.get('/subCategory', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', '/subCategory.html'));
 })
 
@@ -45,11 +45,17 @@ app.get('/subtype.html', function (req, res) {
 
 
 
-app.get('/event.html', function (req, res) {
+app.get('/event', function (req, res) {
   res.render('event');
 });
 app.get('/childCare', function (req, res) {
-  res.send(child_care);
+  fs.readFile('public/child-care-json.json',function(err,data){
+    if (err){
+        console.error(err)
+    }
+    res.send(data)
+    res.end()
+})
 })
 
 
