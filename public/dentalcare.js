@@ -7,7 +7,7 @@ function initMap() {
 	// for display.
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: myLatLng,
-		zoom: 10
+		zoom: 12
 	});
 
 	// Create a marker and set its position.
@@ -23,10 +23,9 @@ fetch("http://localhost:4001/DentalCare")
 		.then((res => {
 			console.log(res);
 			for (var i = 0; i < 21; i++) {
-				console.log(res[i].Long);
-				console.log(res[i].Lat);
 				arr_Longitude.push(res[i].Lat)
 				arr_Latitude.push(res[i].Long)
+				appendResponse(res[i].Name, res[i].PCode, res[i].Contact);
 			}
 		})
 		))
@@ -47,20 +46,28 @@ fetch("http://localhost:4001/DentalCare")
 
 
 
-function appendResponse(name, cap, date, i, pcode) {
-	let results_row = document.querySelector('#results_row');
-	var node = document.createElement("div");
-	node.classList.add("row");
-	node.id = `row${i}`;
-	node.innerHTML = `<div class="col-md-12">
-                    <h3>${name}</h3>
-                    </div>
-                    <div class="col-md-4">
-                    <h6>Start Date: ${date} Capacity: ${cap} </h6>
-                    </div>
-                    <div class="col-md-4">
-                        <h6>${pcode}</h6>
-                    </div>
+function appendResponse(name, pcode, contact) {
+	let results_table = document.querySelector('#results_table');
+	var node = document.createElement("tr");
+	node.innerHTML = `
+					<td>${name}
+						<br>
+					</td>
+					<td>
+						<p>Toronto, ON ${pcode}</p>
+						<div>
+							<div>${contact}</div>
+							<div></div>
+						</div>
+						<div>
+							<p>
+								<strong>Clinic Hours</strong>:</p>
+							<p>Monday and Tuesday – 8 am to 4 pm</p>
+							<p>Wednesday – &nbsp;10 am to 6 pm</p>
+							<p>Thursday and Friday – 8 am to 4 pm</p>
+						</div>
+						<div></div>
+					</td>
                     `;
-	results_row.appendChild(node);
+	results_table.appendChild(node);
 }

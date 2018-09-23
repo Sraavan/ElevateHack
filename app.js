@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require("path");
-
+const fs = require('fs')
 // logger
 const logger = require('morgan');
 app.use(logger('dev'));
@@ -23,7 +23,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/categories', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', '/categories.html'));
+  res.sendFile(path.join(__dirname, 'public', 'categories.html'));
 })
 
 app.get('/subCategory', function (req, res) {
@@ -40,18 +40,24 @@ app.get('/subtype.html', function (req, res) {
   res.sendFile(path.join(__dirname + '/subtype.html'));
 })
 
-
-
-
 app.get('/event', function (req, res) {
+  res.render('event');
+});
+
+app.get('/childCare', function (req, res) {
+  fs.readFile('public/child-care-json.json',function(err,data){
+    if (err){
+        console.error(err)
+    }
+    res.send(data)
+    res.end()
+})
   res.sendFile(path.join(__dirname, 'public', '/event.html'));
 });
-// app.get('/childCare', function (req, res) {
-//   res.send(child_care);
+
+// app.get('/ChildCare', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', '/child-care-json.json'));
 // })
-app.get('/ChildCare', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', '/child-care-json.json'));
-})
 
 const userRoute = require('./routes/user');
 
