@@ -16,30 +16,29 @@ function initMap() {
 }
 
 fetch("http://localhost:4001/ChildCare")
-  .then(res => res.json()
-    .then((res => {
-      console.log(res);
-      for (var i = 0; i < 10; i++) {
-        console.log(res[i].LOC_NAME);
-        console.log(res[i].PCODE);
-        console.log(res[i].run_date);
-        console.log(res[i].PGSPACE)
-        appendResponse(res[i].LOC_NAME, res[i].run_date, res[i].PGSPACE, i, res[i].PCODE);
-        arr_Longitude.push(res[i].LONGITUDE)
-        arr_Latitude.push(res[i].LATITUDE)
-      }
-    })
-    )).then((res) => {
-      // Create a marker and set its position.
-      console.log(arr_Latitude)
-      for (let i = 0; i < arr_Latitude.length; i++) {
-        var marker = new google.maps.Marker({
-          map: map,
-          position: { lat: arr_Latitude[i], lng: arr_Longitude[i] },
-          title: `Location ${i}`
-        });
-      }
-    });
+  .then(res => res.json())
+  .then(res => {
+    console.log(res);
+    for (var i = 0; i < 10; i++) {
+      console.log(res[i].LOC_NAME);
+      console.log(res[i].PCODE);
+      console.log(res[i].run_date);
+      console.log(res[i].PGSPACE)
+      appendResponse(res[i].LOC_NAME, res[i].run_date, res[i].PGSPACE, i, res[i].PCODE);
+      arr_Longitude.push(res[i].LONGITUDE)
+      arr_Latitude.push(res[i].LATITUDE)
+    }
+  }).then(res => {
+    // Create a marker and set its position.
+    console.log(arr_Latitude)
+    for (let i = 0; i < arr_Latitude.length; i++) {
+      var marker = new google.maps.Marker({
+        map: map,
+        position: { lat: arr_Latitude[i], lng: arr_Longitude[i] },
+        title: `Location ${i}`
+      });
+    }
+  });
 
 
 

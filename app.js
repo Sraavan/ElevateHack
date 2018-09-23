@@ -44,20 +44,9 @@ app.get('/event', function (req, res) {
   res.render('event');
 });
 
-app.get('/childCare', function (req, res) {
-  fs.readFile('public/child-care-json.json',function(err,data){
-    if (err){
-        console.error(err)
-    }
-    res.send(data)
-    res.end()
-})
-  res.sendFile(path.join(__dirname, 'public', '/event.html'));
+app.get('/ChildCare', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'child-care-json.json'));
 });
-
-// app.get('/ChildCare', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public', '/child-care-json.json'));
-// })
 
 const userRoute = require('./routes/user');
 
