@@ -38,7 +38,7 @@ router.post('/signup', (req, res, next) => {
   // add user to DB
   parents.push(new_user);
   res.status(201).json({
-    message: " Created new Accoutn",
+    message: " Created new Account",
     user: new_user,
   });
 })
