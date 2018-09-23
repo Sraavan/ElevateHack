@@ -52,7 +52,7 @@ app.get('/subtype.html', function (req, res) {
 
 
 app.get('/event.html', function (req, res) {
-  res.render('event');
+  res.sendFile(path.join(__dirname, 'public', '/event.html'));
 });
 // app.get('/childCare', function (req, res) {
 //   res.send(child_care);
