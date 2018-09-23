@@ -1,6 +1,5 @@
 // Helpers
-//var fs = require("fs")
-
+var fs = require("fs")
 let arr_lon = [] //Array which stores the longitudes of centers
 let arr_lat = [] //Array which stores the latitudes of centres
 let arr_dist = []
@@ -31,11 +30,11 @@ const distance = (lat1, lon1, lat2, lon2, unit = 'K') => {
   return dist
 }
 
-fs.readFile("../child-care-fin.json",function(err,data){
+fs.readFile("./database/child-care-fin.json",function(err,data){
   if (err){
     console.log(err)
   }
-  getCoordinatesAndCentres(data,getCloseCentres)
+  getCoordinatesAndCentres(data)
 })
 
 function getCloseCentres(){
@@ -68,7 +67,7 @@ function getCoordinatesAndCentres(data){
 }
 
 
-function generateCoordinatesJson(){
+let generateCoordinatesJson = function(){
   let coordObj = {}
   coordObj.data = []
   let count = 0;
@@ -87,7 +86,8 @@ function generateCoordinatesJson(){
 
 module.exports = {
   calcAge: calcAge,
-  getDistance: distance
+  getDistance: distance,
+  generateCoordinatesJson : generateCoordinatesJson
 }
 
 
