@@ -47,7 +47,7 @@ body{
   width: 11.5em;
   height: 60px;
   color: white;
-  margin: 14px auto 14px auto;
+  margin: 10px auto 10px auto;
   box-shadow: 0 2px 2px #ACA5A3;
   }
   
@@ -73,4 +73,66 @@ body{
 
 #nutritionBtn {
   background-color:rgb(166, 247, 146);
+}
+
+
+/* --------------------------------------- */
+/* FOOTER */
+/* --------------------------------------- */
+
+.row {
+  margin: 0;
+}
+
+footer {
+  background-color: #FFBBA4;
+  padding: 5px 18px 0 18px;
+}
+
+.footer-nav {
+  list-style: none;
+  float: center;
+}
+
+.nav-links {
+  list-style: none;
+  /* float: center; */
+  font-size: 135%;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin-right: 80px;
+  text-align: center;
+}
+
+.nav-links li:last-child {
+  margin-right: 0;
+}
+
+.nav-links li a:link,
+.nav-links li a:visited {
+  text-decoration: none;
+  border: 0;
+  color: white;
+  text-align: center;
+  font-size: 135%;
+}
+
+.nav-links li a:link,
+.nav-links li a:visited {
+  font-size: 135%;
+}
+
+.ion-ios-color-wand-outline,
+.ion-ios-heart-outline,
+.ion-ios-keypad-outline {
+  transition: color 0.2s;
+}
+
+
+footer p {
+  color: white;
+  text-align: center;
+  margin-top: 0;
 }
