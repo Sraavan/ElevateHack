@@ -61,7 +61,7 @@ router.get('/:userId/child', (req, res) => {
 
 router.post('/:userId/child', (req, res, next) => {
   const parent = findParent(req.params.userId);
-  const birthday = `${req.body.year}-${req.body.month}-${req.body.day}`;
+  const birthday = `${req.body.month} ${req.body.day}, ${req.body.year}`;
 
   const location = req.body.location;
 
@@ -74,9 +74,8 @@ router.post('/:userId/child', (req, res, next) => {
       birthday: birthday,
       endpoint: `/user/${parent.id}/child/${child_id}`
     }
-    console.log(child);
-
     parent.children.push(child);
+    console.log(parent)
 
     res.redirect(child.endpoint + '/recommendation');
   }
@@ -90,9 +89,10 @@ router.post('/:userId/child', (req, res, next) => {
 // })
 
 router.get('/:userId/child/:childId/recommendation', (req, res, next) => {
-  const child = findChild(req.params.userId, req.params.childId)[0];
-  const age = helpers.calAge(child.birthday);
-  //res.json({ message: 'Pass' })
+  const child = findChild(req.params.userId, req.params.childId);
+  //console.log(helpers.calAge(child.birthday));
+
+  res.render('recommendation');
 })
 
 router.get('/:userId/child/:childId/event', (req, res, next) => {

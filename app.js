@@ -26,6 +26,15 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/categories.html', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', '/categories.html'));
+})
+
+app.get('/subCategory.html', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', '/subCategory.html'));
+})
+
+
 // app.get('/getChildCare', function (req, res) {
 //   res.send(child_care);
 // });
@@ -34,13 +43,14 @@ app.get('/subtype.html', function (req, res) {
 })
 
 
+
+
 app.get('/event.html', function (req, res) {
   res.render('event');
 });
 app.get('/childCare', function (req, res) {
   res.send(child_care);
 })
-
 
 
 // app.get('/', function (req, res, next) {
