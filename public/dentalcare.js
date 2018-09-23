@@ -60,6 +60,7 @@ function appendResponse(name, pcode, contact) {
 							<div></div>
 						</div>
 						<div>
+							<br>
 							<p>
 								<strong>Clinic Hours</strong>:</p>
 							<p>Monday and Tuesday – 8 am to 4 pm</p>
