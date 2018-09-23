@@ -18,10 +18,6 @@ app.set('view engine', 'ejs');
 //app.use(express.static('public'));
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-// app.get('/css/:css', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public', 'css', req.params.css));
-// })
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -40,10 +36,6 @@ app.get('/DentalCare', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', '/dentalcare.json'));
 })
 
-
-// app.get('/getChildCare', function (req, res) {
-//   res.send(child_care);
-// });
 app.get('/subtype.html', function (req, res) {
   res.sendFile(path.join(__dirname + '/subtype.html'));
 })
@@ -61,20 +53,9 @@ app.get('/ChildCare', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', '/child-care-json.json'));
 })
 
-// app.get('/', function (req, res, next) {
-//   res.render('index', { title: 'Hello ' });
-// });
-
 const userRoute = require('./routes/user');
 
 app.use('/user', userRoute);
-
-// const anonymousRoute = require('./routes/anonymous');
-
-
-// app.use('/anonymous', anonymousRoute);
-
-
 
 
 // if not req path match the above route
@@ -94,25 +75,3 @@ app.use((error, req, res, next) => {
 
 
 module.exports = app;
-
-
-
-
-// app.use('/', express.static(path.join(__dirname, 'public')));
-
-// app.get('/', function (req, res) {
-//   console.log("before send");
-//   //console.log(child_care);
-//   res.sendFile(path.join(__dirname + '/public/index.html'));
-// });
-
-
-// app.get('/index.js', function (req, res) {
-//   res.sendFile(path.join(__dirname + '/public/index.js'));
-// });
-
-// app.get('/', function (req, res) {
-//   console.log(child_care);
-//   res.sendFile(path.join(__dirname + '/public/index.html'));
-
-// });
