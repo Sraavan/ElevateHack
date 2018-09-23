@@ -1,6 +1,11 @@
 // Helpers
 var fs = require("fs")
 
+let arr_lon = [] //Array which stores the longitudes of centers
+let arr_lat = [] //Array which stores the latitudes of centres
+let arr_dist = []
+let childCareObj ;
+
 const calcAge = birthday => {
   now = Date.now();
   birthday = new Date(birthday);
@@ -9,7 +14,7 @@ const calcAge = birthday => {
   return age;
 }
 
-const distance = (lat1, lon1, lat2, lon2, unit) => {
+const distance = (lat1, lon1, lat2, lon2, unit='K') => {
   var radlat1 = Math.PI * lat1 / 180
   var radlat2 = Math.PI * lat2 / 180
   var theta = lon1 - lon2
@@ -26,8 +31,59 @@ const distance = (lat1, lon1, lat2, lon2, unit) => {
   return dist
 }
 
-fs.readFile("child-care-fin.json")
+fs.readFile("../child-care-fin.json",function(err,data){
+  if (err){
+    console.log(err)
+  }
+  getCoordinatesAndCentres(data,getCloseCentres)
+})
 
+function getCloseCentres(){
+
+  for (let i=0;i<arr_lon.length;i++){
+    arr_dist.push(distance(43.6598,-79.3886,parseFloat(arr_lat[i]),parseFloat(arr_lon[i])))
+  }
+  fs.writeFile("child-care-filter",generateCoordinatesJson(),function(err){
+    if (err){
+      throw err;
+    }
+  })
+}
+
+function getCoordinatesAndCentres(data){
+  var mainObj = JSON.parse(data)
+  childCareObj = mainObj.childCare
+  var len = mainObj.childCare.length
+  let lon = 0;
+  let lat = 0;
+
+  for (let i=0;i<len;i++){
+    lon = childCareObj[i].longitude;
+    lat = childCareObj[i].latitude;
+    arr_lon.push(lon)
+    arr_lat.push(lat)
+  }
+
+  getCloseCentres();
+}
+
+
+function generateCoordinatesJson(){
+  let coordObj = {}
+  coordObj.data = []
+  let count = 0;
+  for (let i=0;i<arr_dist.length;i++){
+    if (arr_dist[i]<5){
+      coordObj.data[count] = childCareObj[i]
+      count++;
+      if (count==10){
+        break;
+      }
+    }
+  } 
+  
+  return (JSON.stringify(coordObj))
+}
 
 module.exports = {
   calcAge: calcAge,
