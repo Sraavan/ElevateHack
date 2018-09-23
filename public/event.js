@@ -1,26 +1,18 @@
-
-
+var arr_Latitude = []
+var arr_Longitude = []
+var map;
   function initMap() {
     var myLatLng = {lat: 43.659899, lng: -79.388492};
-    var myLatLng1 = {lat: 43.659899, lng: -79.398492};
+    
+    
     // Create a map object and specify the DOM element
     // for display.
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
       center: myLatLng,
       zoom: 15
     });
 
-    // Create a marker and set its position.
-    var marker = new google.maps.Marker({
-      map: map,
-      position: myLatLng,
-      title: 'My Location'
-    });
-    var marker = new google.maps.Marker({
-      map: map,
-      position: myLatLng1,
-      title: 'Hey there!'
-    });
+    
   }
 
 fetch("http://localhost:8085/ChildCare")
@@ -33,9 +25,21 @@ fetch("http://localhost:8085/ChildCare")
     console.log(res[i].run_date);
     console.log(res[i].PGSPACE)
     appendResponse(res[i].LOC_NAME, res[i].run_date, res[i].PGSPACE, i, res[i].PCODE);
+    arr_Longitude.push(res[i].LONGITUDE)
+    arr_Latitude.push(res[i].LATITUDE)
   }
   })
-));
+)).then((res) => {
+  // Create a marker and set its position.
+console.log(arr_Latitude)
+for (let i=0;i<arr_Latitude.length;i++){
+     var marker = new google.maps.Marker({
+     map: map,
+     position: {lat: arr_Latitude[i], lng: arr_Longitude[i]},
+     title: `Location ${i}`
+     });
+}
+});
 
 
 
@@ -56,3 +60,4 @@ function appendResponse(name, cap, date, i, pcode) {
                     `;
 	results_row.appendChild(node);
 }
+
