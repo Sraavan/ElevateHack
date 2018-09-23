@@ -21,12 +21,12 @@ function initMap() {
 				for (var i = 0; i < 24; i++) {
 					var marker = new google.maps.Marker({
 						map: map,
-						position: { lat: res[i].Lat, lng: res[i].Lon },
+						position: { lat: res[i].Lat, lng: res[i].Long },
 						title: `${res[i].Name}`
 					});
 				}
 			})
-	));
+			));
 }
 
 
@@ -42,7 +42,7 @@ function appendResponse(name, cap, date, i, pcode) {
                     </div>
                     <div class="col-md-4">
                     <h6>Start Date: ${date} Capacity: ${cap} </h6>
-                    </div>  
+                    </div>
                     <div class="col-md-4">
                         <h6>${pcode}</h6>
                     </div>
