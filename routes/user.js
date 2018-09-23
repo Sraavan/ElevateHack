@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
-<<<<<<< HEAD
 const path = require('path');
 
-=======
-const glob = require('../glob.js')
->>>>>>> b90d93f8f85c925260865b8062800f9535b935bb
 let id = 0;
 let parents = [];
 
@@ -14,11 +10,7 @@ const helpers = require('../utils/helpers');
 
 router.get('/login', (req, res) => { res.render('login'); })
 router.get('/signup', (req, res) => {
-<<<<<<< HEAD
   res.sendFile(path.join(__dirname, '..', 'public', 'signup.html'));
-=======
-  res.sendFile(glob.parentDirName+'/public/signup.html');
->>>>>>> b90d93f8f85c925260865b8062800f9535b935bb
 })
 
 router.post('/login', (req, res, next) => {
@@ -64,20 +56,25 @@ router.get('/:userId', (req, res, next) => {
 })
 
 router.get('/:userId/child', (req, res) => {
-  res.render('child_profile', { endpoint: `/${req.params.userId}/child` });
+  res.render('child_profile', { endpoint: `/user/${req.params.userId}/child` });
 })
 
 router.post('/:userId/child', (req, res, next) => {
   const parent = findParent(req.params.userId);
+  const birthday = `${req.body.year}-${req.body.month}-${req.body.day}`;
+
+  const location = req.body.location;
+
   if (parent) {
     const child_id = parent.children.length;
 
     const child = {
       id: child_id,
       name: req.body.name,
-      birthday: req.body.birthday,
+      birthday: birthday,
       endpoint: `/user/${parent.id}/child/${child_id}`
     }
+    console.log(child);
 
     parent.children.push(child);
 
