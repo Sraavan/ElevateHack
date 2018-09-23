@@ -1,33 +1,34 @@
 function initMap() {
-    var myLatLng = {lat: 43.659899, lng: -79.388492};
-    // Create a map object and specify the DOM element
-    // for display.
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: myLatLng,
-      zoom: 15
-    });
+	var myLatLng = { lat: 43.659899, lng: -79.388492 };
+	// Create a map object and specify the DOM element
+	// for display.
+	var map = new google.maps.Map(document.getElementById('map'), {
+		center: myLatLng,
+		zoom: 15
+	});
 
-    // Create a marker and set its position.
-    var marker = new google.maps.Marker({
-      map: map,
-      position: myLatLng,
-      title: 'My Location'
-    });
-  }
+	// Create a marker and set its position.
+	var marker = new google.maps.Marker({
+		map: map,
+		position: myLatLng,
+		title: 'My Location'
+	});
 
-  fetch("http://localhost:4001/DentalCare")
-.then(res => res.json()
-.then((res => {
-  console.log(res);
-  for (var i =0; i<10; i++){
-    console.log(res[i].LOC_NAME);
-    console.log(res[i].PCODE);
-    console.log(res[i].run_date);
-    console.log(res[i].PGSPACE)
-    appendResponse(res[i].LOC_NAME, res[i].run_date, res[i].PGSPACE, i, res[i].PCODE);
-  }
-  })
-));
+	fetch("http://localhost:4001/DentalCare")
+		.then(res => res.json()
+			.then((res => {
+				console.log(res);
+				for (var i = 0; i < 24; i++) {
+					var marker = new google.maps.Marker({
+						map: map,
+						position: { lat: res[i].Lat, lng: res[i].Lon },
+						title: `${res[i].Name}`
+					});
+				}
+			})
+	));
+}
+
 
 
 
