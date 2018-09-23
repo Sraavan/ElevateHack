@@ -2,6 +2,7 @@
 
   function initMap() {
     var myLatLng = {lat: 43.659899, lng: -79.388492};
+    var myLatLng1 = {lat: 43.659899, lng: -79.398492};
     // Create a map object and specify the DOM element
     // for display.
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -14,6 +15,11 @@
       map: map,
       position: myLatLng,
       title: 'Hello World!'
+    });
+    var marker = new google.maps.Marker({
+      map: map,
+      position: myLatLng1,
+      title: 'Hey there!'
     });
   }
 
