@@ -3,4 +3,4 @@ A solution for our Elevate Hack. We made an app for the City of Toronto so users
 
 ![](gifs/ComfiiWalkthroughA.gif | width=40%)
 
-<img src="/Plomboe/ElevateHack/raw/master/gifs/ComfiiWalkthroughA.gif" style="max-width:100%;">
+<img src="gifs/ComfiiWalkthroughA.gif" width="40%">
